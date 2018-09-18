@@ -1,19 +1,25 @@
 <template name="eit">
-<tr>
-    <td>
-        <input type="checkbox" class="checkbox" value="checked" />
-    </td>
-    <td>
-        {{eits.firstname}}
-    </td>
-    <td>
-        {{eits.lastname}}
-    </td>
-    <td>
-        {{eits.gender}}
-    </td>
-    <td>
-        {{eits.dob}}
-    </td>
-</tr>
+    <tr>
+        <td class="eitcheckbox">
+            <input type="checkbox" class="checkbox" value="checked" />
+        </td>
+        <td>
+            {{firstname}}
+        </td>
+        <td>
+            {{lastname}}
+        </td>
+        <td>
+            {{gender}}
+        </td>
+        <td>
+            {{dob}}
+        </td>
+        <td class="eitedit">
+            <button class="btn btn-edit">Edit</button>
+        </td>
+        <td class="eitdelete">
+            <button class="btn btn-delete">Delete</button>
+        </td>
+    </tr>
 </template>
