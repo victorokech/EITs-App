@@ -14,6 +14,8 @@ import {
 import './eit.js';
 import './body.html';
 
+var ids = [];
+
 Template.body.onCreated(function bodyOnCreated() {
     this.state = new ReactiveDict();
 });
@@ -46,6 +48,9 @@ Template.body.events({
         } else {
             Meteor.call('eit.update', id, eits);
         }
+        
+        // change back submit button
+        target.submit.innerHTML = "Submit";
         // clear form
         target.reset();
     },
@@ -66,4 +71,24 @@ Template.body.events({
     'click .btn-delete'() {
         Meteor.call('eit.remove', this._id);
     },
+    'change .eitcheckbox'() {
+        var id = this._id;
+        if (event.target.checked) {
+            ids.push(id);
+        } else {
+            ids.splice(ids.indexOf(id), 1);
+        }
+        console.log(ids);
+        // console.log(event.target.checked);
+
+        document.querySelector('.bulkdelete').innerHTML = '<button class="btn btn-bulkdelete">Delete</button>';
+    },
+    'click .btn-bulkdelete'(event) {
+        // get checked checkboxes ids
+        for (let i = 0; i < ids.length; i++) {
+            var _id = ids[i];
+            Meteor.call('eit.remove', _id);
+            console.log(_id);
+        }
+    }
 });

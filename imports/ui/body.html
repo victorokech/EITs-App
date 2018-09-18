@@ -2,10 +2,12 @@
     <div class="container">
         <header>
             <h1>EIT App</h1>
+            {{> loginButtons}}
         </header>
         <section class="content">
+            {{#if currentUser}}
             <form class="new-eit" name="neweit">
-                <input type="hidden" name="id"/>
+                <input type="hidden" name="id" />
                 <input type="text" name="firstname" placeholder="Enter first name" required />
                 <input type="text" name="lastname" placeholder="Enter last name" required />
                 <select name="gender" required>
@@ -32,9 +34,23 @@
                         {{#each eits}}
                         {{> eit}}
                         {{/each}}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="bulkdelete"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
+            {{else}}
+            <div class="notloggedin">
+                <p>Please sign in or create your account.</p>
+            </div>
+            {{/if}}
 
         </section>
         <footer>

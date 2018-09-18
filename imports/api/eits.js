@@ -13,6 +13,12 @@ export const EITS = new Mongo.Collection('eits');
 
 Meteor.methods({
     'eit.insert'(eits) {
+        check(eits, Object);
+        // Make sure the user is logged in before inserting a task
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not-authorized');
+        }
+        
         EITS.insert({
             firstname: eits.firstname,
             lastname: eits.lastname,
@@ -27,15 +33,5 @@ Meteor.methods({
     'eit.remove'(id) {
         check(id, String);
         EITS.remove(id);
-    },
-    'eit.setChecked'(taskId, setChecked) {
-        check(taskId, String);
-        check(setChecked, Boolean);
-
-        Tasks.update(taskId, {
-            $set: {
-                checked: setChecked
-            }
-        });
     },
 });
