@@ -18,12 +18,15 @@ Meteor.methods({
         if (!Meteor.userId()) {
             throw new Meteor.Error('not-authorized');
         }
-        
+
         EITS.insert({
             firstname: eits.firstname,
             lastname: eits.lastname,
             gender: eits.gender,
-            dob: eits.dob
+            dob: eits.dob,
+            createdAt: new Date(),
+            owner: Meteor.userId(),
+            username: Meteor.user().username,
         });
     },
     'eit.update'(id, eits) {
