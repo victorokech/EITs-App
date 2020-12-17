@@ -1,0 +1,44 @@
+# Write your query or mutation here
+query getAllEits {
+  getEits {
+    _id
+    firstname
+    lastname
+    gender
+    dob
+  }
+}
+
+query getEit {
+  getOneEit(id: "rLqNb945eBMpBQkPe") {
+    _id
+    firstname
+    lastname
+    gender
+    dob
+  }
+}
+
+mutation insertEit {
+  insertEit(firstname: "Shorty", lastname:"Milli", gender: "Male", dob: "12th August") {
+    _id
+    firstname
+    lastname
+    gender
+    dob
+  }
+}
+
+mutation updateEit {
+  updateEit(id: "rLqNb945eBMpBQkPe", firstname: "James", lastname: "Kwabena", gender: "Female", dob: "19th August") {
+    _id
+    firstname
+    lastname
+    gender
+    dob
+  }
+}
+
+mutation deleteEit {
+  deleteEit(id: "6Mk8xWXoZtueQmzza")
+}

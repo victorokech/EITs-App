@@ -1,13 +1,6 @@
-import {
-    Meteor
-} from 'meteor/meteor';
-import {
-    Mongo
-} from 'meteor/mongo';
-import {
-    check
-} from 'meteor/check';
-
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
 
 export const EITS = new Mongo.Collection('eits');
 
@@ -19,7 +12,7 @@ Meteor.methods({
             throw new Meteor.Error('not-authorized');
         }
 
-        EITS.insert({
+        let id = EITS.insert({
             firstname: eits.firstname,
             lastname: eits.lastname,
             gender: eits.gender,

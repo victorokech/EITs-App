@@ -3,12 +3,16 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "test": "cross-env TEST_WATCH=1 meteor test --driver-package meteortesting:mocha -p 8082",
+    "test-app": "cross-env TEST_WATCH=1 TEST_BROWSER_DRIVER=chrome meteor test --full-app --driver-package meteortesting:mocha -p 8082",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
     "@babel/runtime": "7.0.0-beta.55",
+    "apollo-server-express": "^2.3.3",
+    "bcrypt": "^3.0.3",
+    "graphql": "^14.1.1",
+    "graphql-iso-date": "^3.6.1",
     "meteor-node-stubs": "^0.4.1"
   },
   "meteor": {
@@ -17,5 +21,10 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chromedriver": "^2.45.0",
+    "selenium-webdriver": "^3.6.0"
   }
 }
